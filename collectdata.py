@@ -1,6 +1,6 @@
 import ugradio
 import numpy as np
-import matplitlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 
 def collect1st(volt_range):
