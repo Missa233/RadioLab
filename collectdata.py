@@ -8,7 +8,7 @@ def collect1st(volt_range):
     first_data = ugradio.pico.capture_data(volt_range, divisor=10, dual_mode=True)
     np.savetxt('firsthorn', first_data)
 
-    plt.histogram(first_data)
+    plt.hist(first_data, normed = True)
     plt.savefig('firsthist.pdf')
 
     return np.loadtxt("firsthorn")
