@@ -25,5 +25,5 @@ def plot_power(data, volt, name):
     plt.title("Power Spectrum of " + name)
     plt.ylabel("Power")
     plt.xlabel("Frequency")
-    plt.savefig(name + 'pdf')
+    plt.savefig(name + '.pdf')
     plt.show()
