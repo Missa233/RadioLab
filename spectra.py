@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 def voltage_spectra(data, volt):
     converted = data*volt/2**15
     voltage = np.fft.fft(converted)
-    freqs = np.fft.fftfreq(len(converted))
+    freqs = np.fft.fftfreq(len(converted), 1/(6.25e6))
 
     return freqs, voltage
 
