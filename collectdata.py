@@ -1,33 +1,25 @@
 import ugradio
 import numpy as np
-import matplotlib.pyplot as plt
 
 
-def collect1st(volt_range):
-    """volt_range: str """
-    first_data = ugradio.pico.capture_data(volt_range, divisor=10, dual_mode=True)
-    np.savetxt('firsthorn', first_data)
+def collect(volt_range, blocks, name, numrepeat=1):
 
-    plt.hist(first_data)
-    plt.title('Histogramed First Sample')
-    plt.ylabel("Counts")
-    plt.xlabel("Pico Value")
-    plt.savefig('firsthist.pdf')
+    """Uses ugradio.pico.capture_data to collect data
+    with a sampling rate of 8.93 MHz with dual_mode = True.
+    Can be used to make multiple calls to capture_data when
+    more data than the maximum nblocks value capture_data
+    will allow is needed. Saves a total of numrepeat .npz
+    files with data indexed with the key 'data'.
 
-    return np.loadtxt("firsthorn")
+    :param volt_range: (str) voltage range to capture data at
+    :param blocks: (int) number of 16,000 complex sampled sets
+    to collect in one call to capture_data
+    :param numrepeat: (int) number of times to repeat the call
+    to capture_data
+    :param name: (str) name to save the data file with, appended
+    with i in range(0, numrepeat) for each datafile.
+    """
 
-def insert_upper(volt_range):
-    data = ugradio.pico.capture_data(volt_range, divisor=10, dual_mode=True)
-    np.savetxt('uppertestsig', data)
-
-    return np.loadtxt('uppertestsig')
-
-
-def insert_lower(volt_range):
-    data = ugradio.pico.capture_data(volt_range, divisor=10, dual_mode=True)
-    np.savetxt('lowertestsig', data)
-
-    return np.loadtxt('lowertestsig')
-
-
-
+    for i in range(0, numrepeat):
+        data = ugradio.pico.capture_data(volt_range, divisor=7, dual_mode=True, nblocks=blocks)
+        np.savez(name + str(i), data=data)
