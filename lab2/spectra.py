@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 
 def voltage_spectra(data, volt):
 
-    """Given raw data from the Pico sampler and the
+    """
+    Given raw data from the Pico sampler and the
     voltage setting used for the collection, computes
     the voltage spectra including frequency values
 
@@ -24,7 +25,8 @@ def voltage_spectra(data, volt):
 
 def power_spectra(data, volt):
 
-    """Calculates the power spectrum and frequency values
+    """
+    Calculates the power spectrum and frequency values
     given raw data from the Pico sampler.
 
     :param data: raw data from Pico sampler
@@ -42,8 +44,9 @@ def power_spectra(data, volt):
 
 def plot_power(power, name):
 
-    """Given the power magnitudes of a spectrum computed
-    with fft, produces the frequencies and shifts all values
+    """
+    Given the power magnitudes of a spectrum computed
+    with np.fft.fft, produces the frequencies and shifts all values
     for proper plotting with negative frequencies to the left
     and positive to the right. Saves the figure with a the name
     given as argument append with "plot.pdf".
@@ -66,7 +69,8 @@ def plot_power(power, name):
 
 def gain(Tcal, scal, scold):
     
-    """Calculates the gain value for intensity calibration 
+    """
+    Calculates the gain value for intensity calibration 
     assuming the temperature of the sky is negligible compared
     to the temperature of the calibration source.
 
