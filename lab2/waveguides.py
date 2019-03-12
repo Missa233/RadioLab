@@ -5,7 +5,8 @@ import scipy.optimize as opt
 
 def find_lambda(data):
 
-    """This function takes in an array of arrays where each
+    """
+    This function takes in an array of arrays where each
     sub-array contains the measured null values in the waveguide
     for a given frequency and shorted combination. (i.e. 7GHz data
     with the waveguide shorted vs. 7GHz with waveguide open.) The
