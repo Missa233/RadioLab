@@ -15,6 +15,7 @@ def find_fringe(utime, ra, dec, Bew, Bns):
     :param Bns: (float) North-South component of interferometer
     baseline in meters
     :return: minimum fringe frequency, maximum fringe frequency
+    in cycles per second
     """
 
     JDtime = ug.timing.julian_date(utime)
@@ -26,5 +27,6 @@ def find_fringe(utime, ra, dec, Bew, Bns):
     Qns = Bns*np.sin(L)*np.cos(d)/l
 
     ff = Qew*np.cos(h) - Qns*np.sin(h)
+    ffseconds = ff*2*np.pi/(60*60*24)
 
-    return min(ff), max(ff)
+    return min(ffseconds), max(ffseconds)
