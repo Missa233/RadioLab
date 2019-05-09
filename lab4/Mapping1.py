@@ -16,6 +16,20 @@ from astropy.coordinates import SkyCoord, EarthLocation, AltAz
 from datetime import datetime
 
 def getGalacticPointing(StartL,EndL,StartB,EndB):
+    """
+    Calculates the galactic coordinates to observe 
+    for the input range given. Steps two degrees in 
+    latitude and four degrees in longitude. Returns
+    arrays of the coordinates to observe.
+    
+    :param StartL: (int) the starting value of galactic 
+    longitude
+    :param EndL: (int) final value of galactic longitude
+    :param StartB: (int) start value of galactic latitude
+    :param EndB: (int) end value of galactic latitude
+    :returns POINTS_L: (array) all longitude values
+    :returns POINTS_B: (array) all latitude values
+    """
     l_range = EndL-StartL
     b_range = EndB-StartB
     l_inc = 4
@@ -324,6 +338,22 @@ def ConstPointing(PointsL,PointsB):
     return [Ara,Adec,Pra,Pdec,Casra,Casdec,Cephra,Cephdec,Lacra,Lacdec,Cygra,Cygdec,Aqra,Aqdec,Scra,Scdec,Sagra,Sagdec,Scora,Scodec,Lupra,Lupdec,Cenra,Cendec,Cxra,Cxdec,Vra,Vdec,Pura,Pudec,CMra,CMdec,Mra,Mdec,Gra,Gdec]
 
 def mapper(l,b,LO,MapName):
+    """
+    Connects with the telescope and spectrometer to
+    point the telescope at each galactic coordinate.
+    Saves the collected spectra with the given
+    MapName. Saves the completed and skipped pointing
+    coordinates as a .txt file. 
+    
+    :param l: (array) galactic longitudes formatted
+    by getGalacticPointing()
+    :param b: (array) galactic latitudes formatted 
+    by getGalacticPointing()
+    :param LO: (int) half the LO value, to account 
+    for the frequency doubler in the system
+    :param MapName: (string) name to save the data 
+    in the fits file with
+    """
     Completed = []
     Skipped = []
     M = l.shape[0]
